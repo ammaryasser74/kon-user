@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ForgetPasswordComponent implements OnInit {
   form: FormGroup;
   passwordNotMatch: any;
+  loading:boolean;
   constructor(public myModel: BsModalRef,
               private formBuilder: FormBuilder,
               public userService: UserService,
@@ -28,14 +29,18 @@ export class ForgetPasswordComponent implements OnInit {
   }
   save() {
     if (this.form.valid) {
+      this.loading=true
         this.userService.SendToken(this.form.value).subscribe(
           res => {
              if (res.Success) {
-               this.toastr.success(res.Message); this.myModel.hide();
+               this.toastr.success(res.Message); 
+               this.myModel.hide();
+               this.loading=false;
                } 
                else 
                {
                  this.toastr.error(res.Message); 
+                 this.loading=false
                 }
           });
     } else {
