@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddPlanCommentComponent } from './add-plan-comment/add-plan-comment.component';
 import { Router } from '@angular/router';
+import * as moment from 'moment'
 @Component({
   selector: 'app-protifilo-coach',
   templateUrl: './protifilo-coach.component.html',
@@ -65,20 +66,21 @@ export class ProtifiloCoachComponent implements OnInit {
   }
   reservation(type = null) {
     if (type == 1) {
-      this.coachService.Reservation({ id: this.userService.currentUser.id, date: new Date() }).subscribe(res => {
-      this.Reservation = res.Data;
+      let today = moment().format('YYYY-MM-DD')
+      this.coachService.Reservation({ id: this.userService.currentUser.id, date: today }).subscribe(res => {
+        this.Reservation = res.Data;
       })
     }
     else if (type == 2) {
-      var tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
+      let tomorrow = moment().add(1, 'day').format('YYYY-MM-DD')
       this.coachService.Reservation({ id: this.userService.currentUser.id, date: tomorrow }).subscribe(res => {
-      this.Reservation = res.Data;
+        this.Reservation = res.Data;
       })
     }
     else {
-      this.coachService.Reservation({ id: this.userService.currentUser.id, date: this.date }).subscribe(res => {
-      this.Reservation = res.Data;
+      let customDate = moment(this.date).format('YYYY-MM-DD')
+      this.coachService.Reservation({ id: this.userService.currentUser.id, date: customDate }).subscribe(res => {
+        this.Reservation = res.Data;
       })
     }
 
