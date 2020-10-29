@@ -25,6 +25,7 @@ export class AddChildComponent implements OnInit {
   @Input() clientID
   martial_status:any;
   showJobName:boolean=false
+  loading:boolean
   constructor(private formBuilder: FormBuilder, 
     public languageService:LanguageService,
     public myModel: BsModalRef,
@@ -41,7 +42,7 @@ export class AddChildComponent implements OnInit {
        this.form = this.formBuilder.group({
          id: [0],
          name: [null,Validators.required],
-         gender: [],
+         gender: [""],
          age:[null],
          birthdate:[null],
          client_id:this.clientID
@@ -50,16 +51,19 @@ export class AddChildComponent implements OnInit {
 
      save() {
        if (this.form.valid) {
+         this.loading=true 
         this.form.value.birthdate=moment(this.form.value.birthdate).format('YYYY-MM-DD')
          if (this.form.value.id == 0) {
            this.childService.Post(this.form.value).subscribe(
              res => {
                if (res.Success) {
                  this.toastr.success(res.Message,"Sucess");
+                 this.loading=false 
                  this.myModel.hide();
                  this.onClose();
                } else {
                  this.toastr.error(res.Message,"Sucess");
+                 this.loading=false 
                }
              }
            );

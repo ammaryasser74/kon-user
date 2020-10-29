@@ -23,12 +23,13 @@
                         <!-- <input type="text" [maxDate]="today" formControlName="birthdate" bsDatepicker id="pickDate" [ngClass]="{'has-error':form.get('birthdate').invalid && form.get('birthdate').dirty}" class="input-field input-normal form-control" placeholder="Birthdate" >
                          -->
                         <input [max]="today" class="form-control" formControlName="birthdate"  type="text" nbInput fullWidth
-                        [owlDateTime]="dt3" placeholder="{{ 'date' | translate}}" [owlDateTimeTrigger]="dt3">
+                        [owlDateTime]="dt3" placeholder="{{ 'birthdate' | translate}}" [owlDateTimeTrigger]="dt3">
                         <owl-date-time #dt3 [pickerType]="'calendar'"></owl-date-time>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <select class="form-control" id="sel1" formControlName="gender" [ngClass]="{'has-error':form.get('gender').invalid && form.get('gender').dirty}">
+                            <select class="form-control" placeholder="gender" id="sel1" formControlName="gender" [ngClass]="{'has-error':form.get('gender').invalid && form.get('gender').dirty}">
+                                <option value="" disabled selected>Select your gender</option>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
                             </select>
@@ -38,7 +39,13 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" (click)="save()"  class="boxed-btn3" data-dismiss="modal">Save</button>
+
+            <button type="button" (click)="save()" class=" boxed-btn3" data-dismiss="modal" [disabled]="loading">
+                <div class="spinner-border" role="status" *ngIf="loading">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span class="ml-2">Save</span>
+            </button>
         </div>
     </div>
 
