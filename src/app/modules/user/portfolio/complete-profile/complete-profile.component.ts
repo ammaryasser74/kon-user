@@ -31,6 +31,8 @@ export class CompleteProfileComponent implements OnInit {
   martial_status: any;
   cities: any;
   country: any
+  loading: boolean
+  dataLoaded: boolean;
   constructor(private formBuilder: FormBuilder,
     public localStorageService: LocalStorageService,
     private jobService: JobService,
@@ -54,14 +56,28 @@ export class CompleteProfileComponent implements OnInit {
     this.myDatat.birthdate = this.myDatat.client.birthdate
     this.myavatar = environment.api_imges + this.myDatat.avater
 
-    this.countryService.GetList().subscribe(res => { this.country = res.Data; })
+    this.countryService.GetList().subscribe(res => {
+      this.country = res.Data;
+      this.cityService.GetList(this.myDatat.country_id).subscribe(res => {
+        this.cities = res.Data
+        this.form.patchValue(this.myDatat)
+        this.dataLoaded = true;
+        this.form.get('country_id').valueChanges.subscribe(countryID => {
+          this.form.get('city_id').reset()
+          this.cities = []
+          this.cityService.GetList(this.myDatat.country_id).subscribe(res => { this.cities = res.Data })
+        })
+
+      })
+    })
+
     this.martial_status =
       [
         { name: this.languageService.getLanguageOrDefault() == 'ar' ? 'اعزب' : "Single", value: 'single' },
         { name: this.languageService.getLanguageOrDefault() == 'ar' ? 'متزوج' : "Married", value: 'married' },
         { name: this.languageService.getLanguageOrDefault() == 'ar' ? 'مطلق' : "Divorced", value: 'divorced' }]
     this.initForm()
-    this.form.patchValue(this.myDatat)
+
   }
   initForm() {
     this.form = this.formBuilder.group({
@@ -80,11 +96,7 @@ export class CompleteProfileComponent implements OnInit {
       martial_status: [null, Validators.required],
       city_id: [null, Validators.required],
     })
-    this.form.get('country_id').valueChanges.subscribe(countryID => {
-      this.form.get('city_id').reset()
-      this.cities = []
-      this.cityService.GetList(countryID).subscribe(res => { this.cities = res.Data })
-    })
+
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -133,15 +145,18 @@ export class CompleteProfileComponent implements OnInit {
   }
   save() {
     if (this.form.valid) {
+      this.loading = true;
       this.form.value.birthdate = moment(this.form.value.birthdate).format('YYYY-MM-DD')
       this.clientService.Update(this.form.value).subscribe(res => {
         if (res.Success) {
+          this.loading = false;
           this.toastr.success(res.Message);
           this.localStorageService.set('currentUser', res.Data);
           this.myModel.hide();
           this.onClose()
         } else {
           this.toastr.error(res.Message);
+          this.loading = false;
         }
       });
     } else {
