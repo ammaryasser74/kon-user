@@ -30,11 +30,20 @@ export class ProtifiloCoachComponent implements OnInit {
       this.URL = environment.api_imges
       this.getData()
       this.reservation()
+      setTimeout(() => {
+        this.scrollToTop()
+      }, 500);
     }
     else {
       this.router.navigate(['/user/home']);
     }
 
+
+  }
+  scrollToTop() {
+    console.log("scroll top work ");
+
+    window.scroll(0, 0);
 
   }
   getData() {
