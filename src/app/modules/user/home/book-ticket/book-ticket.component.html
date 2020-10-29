@@ -1,0 +1,61 @@
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3> Book Ticket For:{{languageService.getLanguageOrDefault()=='ar' ? Data.name_arabic :Data.name_english}}</h3>
+            <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <p style="color: #888888;font-weight: 500;">Coach: {{Data.coach.user.first_name}} {{Data.coach.user.last_name}}</p>
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <p style="color: #888888;font-weight: 500;">Maximum Number:{{Data.max_number}}</p>
+                    <p style="color: #888888;font-weight: 500;">available seats :{{Data.no_reserve}}</p>
+                    <p style="color: #888888;font-weight: 500;">Price of Ticket :{{Data.price}}</p>
+                </div>
+            </div>
+            <p style="color: #888888;max-height: 85px; min-height: 85px;font-weight: 500;">Description:<br>{{languageService.getLanguageOrDefault()=='ar' ? Data.description_arabic :Data.description_english}}
+            </p>
+            <hr>
+            <div class="row">
+            <div class="col-md-12 col-12">
+                <label>How many tickets he need?</label>
+                <input type="number" class="form-control" id="name" placeholder="no of ticket"
+                    [(ngModel)]="numberTicket" min="1" (keyup)="gettotal()" style="margin-top: 0px; margin-bottom: 15px;">
+            </div>
+            <div class="col-md-12 col-12">
+                <label>How many Price Of One Seat?</label>
+                <input type="number" class="form-control" id="name" placeholder="{{Data.price}}"
+                    readonly style="margin-top: 0px; margin-bottom: 15px;" >
+            </div>
+            <div class="col-md-12 col-12">
+                <label>Total Price of Tickets </label>
+                <input type="number" class="form-control" id="name" placeholder="no of ticket"
+                    [(ngModel)]="total" min="1" readonly style="margin-top: 0px; margin-bottom: 15px;">
+            </div>
+        </div>
+                 <!-- <form [formGroup]="form" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <input type="text" class="form-control" id="name" placeholder="Email"
+                            formControlName="LoginField" [ngClass]="{'has-error':form.get('LoginField').invalid && form.get('LoginField').dirty}" >
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <input type="password" class="form-control" id="email" placeholder="Password"
+                            formControlName="Password" [ngClass]="{'has-error':form.get('Password').invalid && form.get('Password').dirty}">
+                    </div>
+                    <div class="col-md-12 mt-20">
+                        <a (click)="newUser()" class="psw"> I donot have account ? </a>
+                </div>
+                <div class="col-md-12 ">
+                    <a (click)="forgetPassword()" class="psw"> Forget your Password ? </a>
+            </div>
+                </div>
+            </form> -->
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="bookTicket(Data.id)" class=" bookingBtn" data-dismiss="modal">Book ticket</button>
+        </div>
+    </div>

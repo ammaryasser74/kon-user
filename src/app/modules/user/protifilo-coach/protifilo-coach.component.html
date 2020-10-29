@@ -1,0 +1,268 @@
+<!-- portfolio_details_banner_start  -->
+<div class="portfolio_details_banner">
+    <div class="container">
+        <div class="row justify-content-center">
+
+        </div>
+    </div>
+</div>
+<!-- portfolio_details_banner_end  -->
+<div class="profile">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 ">
+                <div class="banner position-div text-center ">
+                    <img src="assets/img/profile.png" *ngIf="!Data?.avater">
+                    <img [src]="URL+Data?.avater" *ngIf="Data?.avater">
+                </div>
+                <div class="details_text text-center">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">{{Data?.first_name}}
+                                {{Data?.last_name}} </p>
+                            <!--                                <p class="title wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s"> complete your profile</p>-->
+                            <p class="job wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">Life Coach</p>
+                            <p class="place wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                                {{Data?.country?.name_english}}, {{Data?.city?.name_english}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 ">
+                <div class=" white">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a (click)="tab=1" class="nav-link" [class.active]="tab==1" data-toggle="tab"  role="tab">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a (click)="tab=2"  class="nav-link" [class.active]="tab==2" data-toggle="tab"  role="tab">Upcoming sessions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a (click)="tab=3" class="nav-link" [class.active]="tab==3" data-toggle="tab" role="tab">Schedual</a>
+                        </li>
+                    </ul><!-- Tab panes -->
+
+                </div>
+                <div class="white">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel" [class.active]="tab==1">
+                            <div class="row">
+                                <div class="col-xl-4 col-md-4 ">
+                                    <div class="details-coach border-right">
+                                        <h4> Experience </h4>
+                                        <ul>
+                                            <ng-container *ngFor="let exp of Data?.coach.experiences ; let i=index">
+                                            <li  *ngIf="exp.type=='experiences'">
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                                {{languageService.getLanguageOrDefault()=='ar' ? exp.description_arabic :exp.description_english}}
+                                            </li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-md-4 ">
+                                    <div class="details-coach border-right">
+                                        <h4> Certifications </h4>
+                                        <ul>
+                                            <ng-container *ngFor="let exp of Data?.coach.experiences ; let i=index">
+                                                <li  *ngIf="exp.type=='certification'">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                    {{languageService.getLanguageOrDefault()=='ar' ? exp.description_arabic :exp.description_english}}
+                                                </li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-md-4 ">
+                                    <div class="details-coach ">
+                                        <h4> Coaching Expertise </h4>
+                                        <ul>
+                                            <ng-container *ngFor="let exp of Data?.coach.experiences ; let i=index">
+                                                <li  *ngIf="exp.type=='expertises'">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                    {{languageService.getLanguageOrDefault()=='ar' ? exp.description_arabic :exp.description_english}}
+                                                </li>
+                                                </ng-container>
+                                        </ul>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane tabs-2" id="tabs-2" role="tabpanel" [class.active]="tab==2">
+                            <div class="row prt-30 b-bo">
+                                <div class="col-md-2 my-auto ">
+                                <input type="text" [(ngModel)]="date" bsDatepicker id="pickDate" class="input-field input-normal form-control"
+                                placeholder="pick Date" (ngModelChange)="reservation()">
+                                </div>
+                                <div class="col-md-1 my-auto mt-15">
+                                <a (click)="reservation(1)" class="Invoice active">Today </a>
+                                 </div>
+                                <div class="col-md-1 my-auto mt-15">
+                                <a (click)="reservation(2)" class="Invoice">tomorrow </a>
+                                </div>
+                            </div>
+                            <ng-container *ngFor="let row of Reservation?.sessions">
+                            <div class="row prt-30 b-bo Upcoming">
+                                <div class="col-md-2 my-auto">
+                                    <img class="img-fluid" src="assets/img/profile-details.png">
+                                </div>
+
+                                <div class="col-md-10 my-auto">
+                                    <h2>   {{row.entity.name_english}}</h2>
+                                    <p> Type : {{row.status}} </p>
+                                </div>
+                            </div>
+
+                            <div class="row prt-30 b-bo session-time">
+                                <!-- <div class="col-md-12">
+                                    <p class="font-weight-bold"> Session 1 </p>
+                                </div> -->
+                                <div class="col-md-12">
+                                    <p> From : {{row.date}} : Time  {{row.time_from}} to  {{row.time_to}}</p>
+                                </div>
+                                <div class="col-md-12 m-t-30">
+                                    <p class="client-p"> clients</p>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <div class="row client">
+                                        <div class="col-md-2 text-center my-auto">
+                                            <img class="img-fluid w-60" src="assets/img/profile.png">
+                                           
+                                        </div>
+                                        <div class="col-md-4 my-auto">
+                                            <h3> {{row.client.user.first_name}} {{row.client.user.last_name}} </h3>
+                                            <span> {{row.client.age}} years </span>
+                                            <span>  {{row.client.user.gender}} </span>
+                                            <span>  {{row.country?.name_english}}, {{row.city?.name_english}} </span>
+                                        </div>
+                                        <div class="col-md-1">
+                                        </div>
+                                        <div class="col-md-5 text-right my-auto">
+
+                                            <button  *ngIf="row.action_plan" (click)="Export(row.action_plan)" class=" btn client-btn outline">action plan  <i class="fa fa-download" aria-hidden="true"></i> </button>
+                                            <button  *ngIf="row.action_comment" (click)="Export(row.action_comment)"  class="btn client-btn outline">  comment  <i class="fa fa-download" aria-hidden="true"></i> </button>
+                                            <!--   -->
+                                            <button *ngIf="!row.action_plan" (click)="addPlanComment(1,row.id)" class="btn client-btn"> add action plan</button>
+                                            <button  *ngIf="!row.action_comment" (click)="addPlanComment(2,row.id)"  class="btn client-btn outline"> add comment</button>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                           </ng-container>
+
+                        </div>
+
+                        <div class="tab-pane " id="tabs-3" role="tabpanel" [class.active]="tab==3">
+                            <div class="row prt-30 b-bo">
+                                <div class="col-md-2 my-auto">
+                                <input type="text" [(ngModel)]="date" bsDatepicker id="pickDate" class="input-field input-normal form-control"
+                                placeholder="pick Date" (ngModelChange)="reservation()">
+                            </div>
+                            <div class="col-md-5 my-auto">
+                                <p class="Invoice">pick Date <i class="fa fa-calendar-o" aria-hidden="true"></i> </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 table-responsive">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th class=" my-auto">
+                                                    <p class="title"> Date </p>
+                                                </th>
+                                                <th>
+                                                    <p class="title"> Time Sessions </p>
+                                                </th>
+                                                <th>
+                                                    <p class="title">
+                                                       Session Name
+                                                    </p>
+                                                </th>
+                                                <th>
+                                                    <p class="title">
+                                                       Client Name
+                                                    </p>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of Reservation?.sessions">
+                                                <td class="">
+                                                    <p class="title">
+                                                       {{row.date}}
+                                                    </p>
+
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                        {{row.time_from}} to  {{row.time_to}}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                      {{row.entity.name_english}}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                       {{row.client.user.first_name}} {{row.client.user.last_name}}
+                                                    </p>
+                                                </td>
+
+                                            </tr>
+                                            <tr *ngFor="let row of Reservation?.events">
+                                                <td class="">
+                                                    <p class="title">
+                                                       {{row.date}}
+                                                    </p>
+
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                        {{row.time_from}} to  {{row.time_to}}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                      Event
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                       {{row.client.user.first_name}} {{row.client.user.last_name}}
+                                                    </p>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

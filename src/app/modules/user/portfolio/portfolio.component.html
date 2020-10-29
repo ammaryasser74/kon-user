@@ -1,0 +1,339 @@
+<!-- header-end -->
+
+
+<!-- portfolio_details_banner_start  -->
+<div class="portfolio_details_banner">
+    <div class="container">
+        <div class="row justify-content-center">
+        </div>
+    </div>
+</div>
+<!-- portfolio_details_banner_end  -->
+<div class="profile">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 ">
+                <div class="banner position-div text-center ">
+                    <img src="assets/img/profile.png" *ngIf="!clientData?.avater">
+                    <img [src]="URL+clientData?.avater" *ngIf="clientData?.avater">
+                </div>
+                <div class="details_text text-center">
+                    <div class="row">
+                        <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <p> {{clientData?.first_name}} {{clientData?.last_name}} </p>
+                            <p class="place wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" *ngIf="clientData?.country">
+                                {{clientData?.country?.name_english}}, {{clientData?.city?.name_english}}</p>
+
+                                <a class="profile title" (click)="showProfile()"> 
+                                    Update your Profile   <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a> 
+                  
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab" *ngIf="Reservation?.upcome?.length>0 && Reservation?.invoices?.length>0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 ">
+                <div class=" white">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item " ><a (click)="tab=1" class="nav-link" [class.active]="tab==1" data-toggle="tab"  role="tab">Upcoming Sessions</a>
+                        </li>
+                        <li class="nav-item" ><a (click)="tab=2" class="nav-link" data-toggle="tab" [class.active]="tab==2" role="tab">Your Action Plans</a>
+                        </li>
+                        <li class="nav-item" ><a (click)="tab=3" class="nav-link" data-toggle="tab" [class.active]="tab==3" role="tab">Your Invoices</a>
+                        </li>
+                    </ul><!-- Tab panes -->
+                </div>
+                <div class="white">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel" [class.active]="tab==1">
+                            <div class="row" *ngIf="Reservation?.upcome.length>0">
+                                <div class="col-xl-4 col-md-4 ">
+                                    <div class="row text-center wow fadeInLeft" data-wow-duration="1.2s"
+                                        data-wow-delay=".4s"
+                                        style="visibility: visible; animation-duration: 1.2s; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                                        <div class="col-md-12">
+                                            <img [src]="URL+''+upcoming?.coach?.user?.avater" alt="" class="img-fluid">
+                                        </div>
+                                        <!-- <div class="col-md-12">
+                                            <a class="boxed-btn3" type="submit" >Message Your Coach</a>
+                                        </div> -->
+
+                                        <div class="row m-t-30" *ngIf="upcoming?.can">
+                                            <div class="col-md-12 m-t-10">
+                                                <a class="boxed-btn3" type="submit" (click)="update(upcoming)">Update Session</a>
+                                            </div>
+    
+                                            <div class="col-md-12 m-t-10 " >
+                                                <a class="boxed-btn3" (click)="cancel(upcoming.id)" style="background-color: red;" >Cancel Session</a>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-8 col-md-8 m-t-30 mobile-padding">
+                                    <h2> {{upcoming?.entity?upcoming.entity.name_english:'Event'}}</h2>
+                                    <div class="row">
+                                        <div class="col-xl-5 col-md-5 ">
+                                            <p> Coach : {{upcoming?.coach?.user.first_name}} {{upcoming.coach?.user.last_name}}</p>
+                                            <p> Number . of . Sessions : 1 </p>
+                                        </div>
+                                        <div class="col-xl-7 col-md-7 ">
+                                            <p> Type : {{upcoming?.type}} sessions </p>
+                                            <p> From : {{upcoming?.date}} Time : {{upcoming?.time_from}} to {{upcoming?.time_to}} </p>
+                                        </div>
+                                    </div>
+                                    <div class="row timeline">
+                                        <div class="col-md-12">
+                                            <ng-container *ngFor="let row of Reservation?.upcome">
+                                                <div class="row active">
+                                                    <div class="text-center ">
+                                                        <div class="row h-30">
+                                                            <div class="col">&nbsp;</div>
+                                                        </div>
+                                                        <button class="profile" (click)="changeSession(row.id)">
+                                                        <h5 class="circle">
+                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                        </h5>
+                                                        </button>
+                                                        <div class="row h-60">
+                                                            <div class="col border-right">&nbsp;</div>
+                                                            <div class="col">&nbsp;</div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="col">
+                                                        <div class="mt-31">
+                                                            <p class="session-number"> {{row.entity?row.entity.name_english:'Event'}} </p>
+                                                            <p class="date"> Day : {{row.date}} Time : {{row.time_from}} to {{row.time_to}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              
+                                               
+                                               </ng-container>
+                                           
+                                            <!-- <div class="row ">
+                                                <div class="text-center ">
+                                                    <div class="row h-30">
+                                                        <div class="col">&nbsp;</div>
+                                                    </div>
+                                                    <h5 class="circle active">
+                                                        <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                    </h5>
+                                                    <div class="row h-60">
+                                                        <div class="col border-right">&nbsp;</div>
+                                                        <div class="col">&nbsp;</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="mt-31">
+                                                        <p class="session-number"> session number </p>
+                                                        <p class="date"> Day : 1 st Saturday , Nov, 2019 | Time : 4 pm
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                       
+
+                                                <div class="col">
+                                                    <div class="mt-31">
+                                                        <p class="session-number"> session number </p>
+                                                        <p class="date"> Day : 1 st Saturday , Nov, 2019 | Time : 4 pm
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane tabs-2" id="tabs-2" role="tabpanel" [class.active]="tab==2">
+                            <ng-container *ngFor="let row of Reservation?.plans">
+                                               
+                            <div class="row prt-30">
+                                <div class="col-md-5">
+                                 
+                                    <p> Coaching Type : <span *ngIf="row.entity_type=='App\\Models\\Session'"> Session</span>
+                                        <span *ngIf="row.entity_type=='App\\Models\\Event'"> Event</span>
+                                    </p>
+                                    <p> Sessions : <span>{{row.entity?.name_arabic}}</span></p>
+                                </div>
+                                <div class="col-md-5">
+                                    <p> Coach Name : <span> {{row.coach.user.first_name}} {{row.coach.user.last_name}}</span></p>
+                                    <p (click)="Export(row.action_plan)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span> Mohamed ahmed
+                                            plan</span> <i class="fa fa-download" aria-hidden="true"></i></p>
+                                </div>
+
+                            </div>
+                            </ng-container>
+            
+                        </div>
+                        <div class="tab-pane " id="tabs-3" role="tabpanel" [class.active]="tab==3">
+                            <ng-container *ngFor="let row of Reservation?.invoices">
+                            <div class="row prt-30 b-bo">
+                                <p class="Invoice">Invoice {{row.code}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 table-responsive">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th class=" my-auto">
+                                                    <img class="img-fluid" src="assets/img/Kon-logos.png">
+                                                </th>
+                                                <th>
+                                                    <p class="title"> 24 omar abdel Aziz street,
+                                                        <br>
+                                                        geddah, Saudi arabia </p>
+                                                </th>
+                                                <th>
+                                                    <p class="title"> support@kon-arabia.com
+                                                        <br>
+                                                        966-258-2459-24
+                                                    </p>
+                                                </th>
+                                                <!-- <th>
+                                                    <p class="date"> Billed On : 10/10/2019
+                                                        <br>
+                                                        Due On : 15/12/2019
+                                                    </p>
+                                                </th> -->
+                                                <th>
+                                                    <p class="date"> Terms: NET.10
+                                                        <br>
+                                                        Invoice Number : {{row.code}}
+                                                    </p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="">
+                                                    <p class="title">
+                                                        Session  Name
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                        Coach Name
+                                                    </p>
+                                                </td>
+                                              
+                                                <td>
+                                                    <p class="title">
+                                                        Start From
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                        Ends At
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class="title">
+                                                      {{row.entity?row.entity.name_english:'Event'}}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                       {{row.coach.user.first_name}}  {{row.coach.user.last_name}}
+                                                    </p>
+                                                </td>
+                                               
+                                                <td>
+                                                    <p class="title">
+                                                        {{row.date}}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title">
+                                                        {{row.time_from}} to {{row.time_to}}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="">
+                                                    <p class="title font-weight-bold">
+                                                        Status : <span *ngIf="row.ispaid==0">Not Paid</span>
+                                                        <span *ngIf="row.ispaid==1">Not Paid</span>
+                                                        <br>
+                                                        This Voice include all taxes
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title font-weight-bold">
+                                                        Total : <span class="price"> {{row.total_price}} </span> <span> SAR </span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title font-weight-bold">
+                                                        Vat : <span class="price"> 2%</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="title font-weight-bold">
+                                                        Net Total : <span class="price"> {{row.NetTotal}} </span> <span> SAR </span>
+                                                    </p>
+                                             </td>
+                                               
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                
+                                </div>
+                            </div>
+
+                            
+                        </ng-container>
+                        <div class="row">
+                            <div class="col-md-12 text-center m-30">
+                                <p>
+                                    <a routerLink="/user/terms" class="tabel-link"> Read Terms of Cancelation Money Back </a>
+                                </p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="session">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="submit_btn wow fadeInUp" data-wow-duration="1s" data-wow-delay=".7s">
+                    <a class="boxed-btn3 start"  (click)="startReservation()" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">Start
+                        Book Session</a>
+                </div>
+
+                <div  *ngIf="Reservation?.upcome?.length==0 && Reservation?.invoices?.length==0" class="submit_btn wow fadeInUp" data-wow-duration="1s"
+                    data-wow-delay=".9s">
+                    <img class="" src="assets/img/sad.png">
+                    <p class="No-sessions"> No sessions yet </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

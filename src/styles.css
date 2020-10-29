@@ -1,0 +1,454 @@
+.lds-facebook {
+    margin-top: 10%;
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 13px;
+    background: #7FB017;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 6px;
+        height: 51px;
+    }
+    50%,
+    100% {
+        top: 19px;
+        height: 26px;
+    }
+}
+
+.loading-screen-wrapper {
+    z-index: 100000;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.loading-screen-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.color-green {
+    color: #7FB017;
+    font-size: 3em;
+}
+
+.min-modal {
+    width: 650px;
+}
+
+.m-loading {
+    margin: 10% 0px 10% 0%;
+    text-align: center;
+}
+
+
+/* -------------------------------Color-------------------------------- */
+
+.color-red {
+    color: red
+}
+
+.color-white {
+    color: white
+}
+
+.text-danger,
+.text-danger:hover,
+.text-danger:focus {
+    color: #F44336 !important;
+}
+
+.has-error {
+    border-color: #D84315 !important;
+}
+
+.has-error .form-control {
+    border-color: #D84315 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.del-red {
+    color: red;
+    padding-right: 10px;
+}
+
+.has-error.select-container .custom-select select {
+    border-color: #D84315 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.has-error .form-control:focus {
+    border-color: #D84315 !important;
+    -webkit-box-shadow: 0 1px 0 #D84315;
+    box-shadow: 0 1px 0 #D84315;
+}
+
+.cal-month-view .cal-day-cell {
+    min-height: 10px !important;
+}
+
+
+/* Full-screen display */
+
+.bs-datepicker {
+    margin-top: -220px !important
+}
+
+.owl-dt-calendar {
+    background-color: white !important;
+    margin-top: -180px !important
+}
+
+.cal-month-view .cal-day-badge {
+    background-color: #4DBDEB;
+    color: #fff;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+    background-color: #4DBDEB !important;
+}
+
+.cal-month-view .cal-header .cal-cell {
+    padding: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+}
+
+.cal-month-view .cal-event {
+    display: none;
+}
+
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 1.1em;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: #000;
+}
+
+.cal-month-view .cal-day-number {
+    font-size: 1em;
+    font-weight: 400;
+    opacity: 0.5;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
+    margin-bottom: 10px;
+    position: absolute !important;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.cal-month-view .cal-day-badge {
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 10px 3px 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 0px;
+    /* border-top-right-radius: 15px; */
+    border-bottom-left-radius: 15px;
+}
+
+.cal-month-view .cal-cell-top {
+    min-height: 48px;
+    max-height: 48px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+.cdk-overlay-container {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    z-index: 9999999 !important;
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    z-index: 9999999 !important;
+}
+
+
+/*************************************************Time in calander *************************
+  .header-date{
+ text-align: center;
+ margin-top: 2rem;
+font-size: 20px;
+font-weight: 600;
+}
+.forms{
+ margin: auto;
+ display: block;
+}
+.remove{
+ padding-left: 0rem !important;
+ padding-right: 0rem !important;
+}
+.header-date strong{
+ color:#f4794c;
+}
+.input-group{
+ float: left;
+ display: block;
+ border: 1px solid #ccc;
+ margin: auto;
+
+ /* margin-left: 50%; */
+
+
+/* } */
+
+.part {
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px!important;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    align-items: center!important;
+    justify-content: space-between!important;
+}
+
+.check-part {
+    display: none;
+}
+
+.part:hover {
+    background-color: rgba(61, 168, 192, .1);
+}
+
+.part:active .check-part {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 7px;
+    display: flex;
+    width: 15px;
+    height: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #4DBDEB;
+    color: #FFF;
+}
+
+.checked {
+    background-color: rgba(244, 121, 76, .1);
+    cursor: auto;
+}
+
+.checked:checked {
+    background-color: rgba(244, 121, 76, .1);
+    cursor: auto;
+}
+
+.form-group {
+    margin-bottom: 0rem !important;
+}
+
+.clock-content {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+.clock-content i {
+    color: gray;
+    display: block;
+    font-size: 20px;
+    margin-top: 0.5rem;
+}
+
+.clock-content span {
+    color: #4DBDEB;
+    font-size: 14px!important;
+    font-weight: 600;
+    display: block;
+}
+
+.cal-month-view .cal-header {
+    background-color: #4DBDEB;
+}
+
+.time-content {
+    width: 60%;
+    float: left;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.time-content span {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    color: #333333;
+    margin-bottom: 0.5rem;
+}
+
+.to-content {
+    width: 20%;
+    color: #939598;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 1rem;
+}
+.carousel .slick-slide .slick-current .slick-active{
+    width: 100% !important;
+}
+.submit {
+    text-align: center;
+    border-radius: 22px;
+    background: #3da8c0;
+    color: #fff;
+    padding: 0.5rem 5rem;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+    /* margin-left: 80%; */
+}
+
+.submit:hover {
+    color: #FFF;
+}
+
+
+/* shrouk edit */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #ccc !important;
+    border-radius: 50%;
+    bottom: 0;
+    margin: auto !important;
+}
+
+.main-check .checkmark:after {
+    top: 0px !important;
+    left: 0px !important;
+    width: 13px !important;
+    height: 13px !important;
+    border-radius: 50%;
+    background: #3da8c0  !important;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+.cal-month-view .cal-day-number {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* height: 100%; */
+    line-height: 3;
+}
+
+.cal-month-view .cal-day-badge {
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 10px 3px 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 0px;
+    /* border-top-right-radius: 15px; */
+    border-bottom-left-radius: 15px;
+    position: absolute;
+    right: 0;
+}
+
+.section-time {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    font-size: 30px;
+    margin: auto;
+    display: block;
+}
+
+.all-times {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+.all-times label{
+    position: static !important;
+    width: 100%;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 7px !important;
+}
+.all-times .checkmark {
+    left: 24px !important;
+    border: 1px solid #4DBDEB !important;
+}
+@media only screen and (min-width: 600px){
+    .all-times:checked~.checkmark{
+        width: 100% !important;
+    }
+}

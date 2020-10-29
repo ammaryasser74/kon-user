@@ -1,0 +1,254 @@
+
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay story">
+            <div class="container-fluid p-lr-70">
+                <div class="row align-items-center justify-content-start">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="slider_text text-center">
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".1s">
+                                Our Story
+                            </h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".1s"> Once Upon A Time</p>
+
+                        </div>
+                    </div>
+                </div>
+                <app-settings-comp></app-settings-comp>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- service_area  -->
+    <div class="service_area">
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-xl-3 col-md-4">
+                    <div class="  story-details arrow-right text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+                        <div class="icon">
+                            <img [src]="story[0].img" alt="">
+                        </div>
+                        <p> <strong>{{languageService.getLanguageOrDefault()=='ar' ? story[0].title_arabic :story[0].title_english}}</strong>
+
+                            {{languageService.getLanguageOrDefault()=='ar' ? story[0].description_arabic :story[0].description_english}}</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="  story-details  arrow-right text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img [src]="story[1].img" alt="">
+                        </div>
+                        <p> <strong> {{languageService.getLanguageOrDefault()=='ar' ? story[1].title_arabic :story[1].title_english}} </strong>
+
+                            {{languageService.getLanguageOrDefault()=='ar' ? story[1].description_arabic :story[1].description_english}}</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="  story-details  arrow-bottom text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+                        <div class="icon">
+                            <img [src]="story[2].img" alt="">
+                        </div>
+                        <p> <strong>{{languageService.getLanguageOrDefault()=='ar' ? story[2].title_arabic :story[2].title_english}}</strong>
+                            {{languageService.getLanguageOrDefault()=='ar' ? story[2].description_arabic :story[2].description_english}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-9 col-md-9">
+                    <div class=" story-detail">
+                        <div class=" row   wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+                            <div class="col-md-4  text-center my-auto">
+
+                                <div class="icon">
+                                    <img [src]="story[3].img" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 my-auto">
+                                <p>
+                                    {{languageService.getLanguageOrDefault()=='ar' ? story[3].description_arabic :story[3].description_english}}
+                                 </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ service_area  -->
+
+
+
+
+
+    <div data-scroll-index="0" class="get_in_tauch_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb-90">
+                        <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">Kon Arabia Founders</h3>
+                        <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                            Best trainers you'll ever meet , highly experienced, educated and trained to help you see what you can't see and to expand your limits
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-md-4">
+                    <div class="single_service text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/team4.png" alt="">
+                        </div>
+                        <p>First Last
+                            <br>
+                            name here</p>
+                        <p class="team-p"> Founder </p>
+                        <ul>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s" href="#"> <i class="fa fa-facebook"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" href="#"> <i class="fa fa-instagram"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" href="#"> <i class="fa fa-twitter"></i> </a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="single_service text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/team5.png" alt="">
+                        </div>
+                        <p>First Last
+                            <br>
+                            name here</p>
+                        <p class="team-p"> Founder </p>
+                        <ul>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s" href="#"> <i class="fa fa-facebook"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" href="#"> <i class="fa fa-instagram"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" href="#"> <i class="fa fa-twitter"></i> </a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="single_service text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/team.png" alt="">
+                        </div>
+                        <p>First Last
+                            <br>
+                            name here</p>
+                        <p class="team-p"> Founder </p>
+                        <ul>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s" href="#"> <i class="fa fa-facebook"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" href="#"> <i class="fa fa-instagram"></i> </a></li>
+                            <li><a class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s" href="#"> <i class="fa fa-twitter"></i> </a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="how_we_work_area vision ">
+        <div class="container ">
+
+            <div class="section_title text-center mb-70">
+
+                <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">OUR VISION</h3>
+                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                    TO BECOME THE LEADING ARAB COACHING SERVICES COMPANY IN THE WORLD
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- service_area  -->
+    <div class="team_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb-90">
+                        <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">our values</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+
+                <div class="col-xl-3 col-md-4">
+                    <div class="  value   text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/value1.png" alt="">
+                        </div>
+                        <p class="boxed-btn3 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s" >TRUST</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="  value text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/value2.png" alt="">
+                        </div>
+                        <p class="boxed-btn3 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s" >RESPONSIBILITY</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4">
+                    <div class="  value text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+
+
+                        <div class="icon">
+                            <img src="assets/img/value3.png" alt="">
+                        </div>
+                        <p class="boxed-btn3 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s" >MUTUALITY</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/ service_area  -->
+    <div class="how_we_work_area map ">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3708.939796783274!2d39.13375441494292!3d21.62726948567726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3da1fa0f9cd8f%3A0x79c74509dff4ca73!2sEve%20Center!5e0!3m2!1sen!2seg!4v1589578475927!5m2!1sen!2seg" 
+        width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+        <div class="container ">
+       
+            <div class="section_title  mb-70">
+                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> 1/14 bgemn, geddah ,SA
+                </p>
+                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                    <i class="fa fa-envelope" aria-hidden="true"></i> support@kon-arabia.com
+                </p>
+                <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                    <i class="fa fa-phone" aria-hidden="true"></i> 966-548-792-258
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+ 

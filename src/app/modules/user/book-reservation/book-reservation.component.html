@@ -1,0 +1,210 @@
+<main>
+    <section class="sec-pad">
+        <div class="container custom-container">
+            <div class="col-md-8 mx-auto">
+                <form [formGroup]="form" autocomplete="off">
+                    <div class="row   mt-15">
+                        <div class=" col-12  mt-15 text-center">
+                            <h3 class="my-4">Start Reservation</h3>
+                        </div>
+                        <div class="row   mt-15 mx-auto">
+                            <div class="col-6">
+                                <label class="container main-check">For you
+                                    <input type="radio" [disabled]="isEdit" [checked]="form.get('foryou').value==1"
+                                        value="1" formControlName="foryou">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label class="container main-check">For Child
+                                    <input [readonly]="isEdit" type="radio" value="2" formControlName="foryou">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-9 my-auto"
+                                *ngIf="clientData?.client?.children.length>0 && form.get('foryou').value==2">
+                                <ng-select placeholder="Choose Child" [multiple]="false" formControlName="child_id">
+                                    <ng-option *ngFor="let row of clientData?.client.children" [value]="row.id"
+                                        [disabled]="row.disabled">
+                                        {{ row.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-3 mt-15 text-center" *ngIf="form.get('foryou').value==2">
+                                <button (click)="addChild()" class="boxed-btn3">Add Child</button>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <ng-select placeholder="Choose Service" [multiple]="false" formControlName="serviceID">
+                                    <ng-option *ngFor="let row of service" [value]="row.id" [disabled]="row.disabled">
+                                        {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic
+                                        :row.name_english}}
+                                    </ng-option>
+                                </ng-select>
+                                <span class="text-danger"
+                                    *ngIf="form.get('serviceID').invalid && form.get('serviceID').dirty">Required</span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <ng-select placeholder="Choose Session" [multiple]="false" formControlName="entity_id">
+                                    <ng-option *ngFor="let row of session" [value]="row.id" [disabled]="row.disabled">
+                                        {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic
+                                        :row.name_english}}
+                                    </ng-option>
+                                </ng-select>
+                                <span class="text-danger"
+                                    *ngIf="form.get('entity_id').invalid && form.get('entity_id').dirty">Required</span>
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="row mt-15" *ngIf="coaches">
+                                    <div class="col-md-6 row mt-15" *ngFor="let row of coaches">
+
+                                        <label class="container py-2">
+                                            <input type="radio"  formControlName="coach_id"
+                                                [value]="row.id">
+
+                                            <img [src]="row.avater" width="50px" height="50px"
+                                                style="border-radius: 50%;">
+                                            {{row.user.first_name}} {{row.user.last_name}}
+                                            <span class="checkmark">
+                                            </span>
+                                        </label>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 mt-20" *ngIf="form.get('total_price').value">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="myinput form-control" formControlName="total_price" readonly>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-20" *ngIf="form.get('total_price').value">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="container py-2">online 
+                                            <input type="radio" formControlName="type" value="online">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+
+                                        <label class="container py-2">face to face 
+                                            <input type="radio" formControlName="type" value="offline">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12  mt-15 view-class" *ngIf="isEdit">
+                            <div class="row m-t-10">
+                                <div class="col-md-6 col-sm-12 ">
+                                    <div class="all-times">
+                                        <label class="container py-2 m-0">
+                                            <span class="d-block">{{reservation?.date}} </span>
+                                            <span class="d-block">{{reservation?.time_from}} </span>
+                                            to
+                                            <span class="d-block"> {{reservation?.time_to}} KSA </span>
+                                            <span class="section-time"><i class="fa fa-clock-o"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12  mt-15 view-class">
+                            <div class="row">
+                                <div class="col-lg-1 col-md-1 col-sm-1 " mwlCalendarPreviousView [view]="view"
+                                    [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" style="width: auto;
+                                     float: left;
+                                     margin: auto;">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+
+                                <div class="col-lg-10 col-md-10 col-xs-9 text-center" style="    width: auto;
+                                float: left;
+                                margin: auto;">
+                                    <span>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+                                </div>
+
+                                <div class="col-lg-1 col-md-1 col-xs-1 " mwlCalendarNextView [view]="view"
+                                    [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" style="    width: auto;
+                                     float: left;
+                                     margin: auto;">
+                                    <i class="fa fa-angle-right"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-12 p-0" >
+                          <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+
+                        </div> -->
+
+                        <ng-container>
+                            <div class="col-12 p-0">
+                                <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12 p-0">
+                                    <mwl-calendar-month-view [viewDate]="viewDate" [events]="myData" [refresh]="refresh"
+                                        (dayClicked)="dayClicked($event.day)">
+                                    </mwl-calendar-month-view>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="!loadmycalender">
+                                <div class="col-md-12 p-0">
+                                    <div class="row m-t-10">
+                                        <ng-container *ngFor="let row of avaliableTime; let i=index">
+                                            <div class="col-md-6 ">
+                                                <div class="all-times"  style="border: 2px solid #4DBDEB;">
+                                                    <label class="container py-2 m-0 " style="border:1px">
+                                                        <span class="d-block">{{row.time_from}} </span>
+                                                        to
+                                                        <span class="d-block"> {{row.time_to}} KSA </span>
+                                                        <input type="radio" [value]="i" formControlName="timeID">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                        </ng-container>
+                    </div>
+
+                    <div class="container py-2" *ngIf="viewTimes">
+                        <div class="row" *ngIf="!isEdit">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" (click)="save()" class="submit btn offset-3">Submit <i
+                                        *ngIf="loading" class="fa fa-cog fa-spin fa-fw"></i></button>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="isEdit">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <button type="submit" (click)="update()" class="submit btn offset-3">Submit <i
+                                        *ngIf="loading" class="fa fa-cog fa-spin fa-fw"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<ngx-spinner type="ball-circus"></ngx-spinner>

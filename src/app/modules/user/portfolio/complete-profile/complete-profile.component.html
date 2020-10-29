@@ -1,0 +1,114 @@
+<div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' (change)="onSelectFile($event)" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview"  *ngIf="!myavatar">
+                                </div>
+                                <div  [ngStyle]="{'background':'url('+myavatar+')', 'background-size': 'contain' }" *ngIf="myavatar">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mtl-15"> Change your photo </p>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-7">
+                        <form [formGroup]="form" autocomplete="off">
+
+                            <div class="row">
+                               
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="name" placeholder="First Name"
+                                            formControlName="first_name" [ngClass]="{'has-error':form.get('first_name').invalid && form.get('first_name').dirty}" >
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="email" placeholder="Last Name"
+                                            formControlName="last_name" [ngClass]="{'has-error':form.get('last_name').invalid && form.get('last_name').dirty}">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="tel" class="form-control" id="name" placeholder="Phone"
+                                            formControlName="phone" [ngClass]="{'has-error':form.get('phone').invalid && form.get('phone').dirty}">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" id="email" placeholder="You@mail.com"
+                                            formControlName="email" [ngClass]="{'has-error':form.get('email').invalid && form.get('email').dirty}">
+                                    </div>
+                             
+                                    <div class="col-md-12">
+                                     
+                                        <ng-select placeholder="{{'Martial_status'|translate}}" [multiple]="false"
+                                        formControlName="martial_status">
+                                        <ng-option *ngFor="let row of martial_status" [value]="row.value" [disabled]="row.disabled">{{row.name}}
+                                        </ng-option>
+                                        </ng-select>
+                                        <span class="text-danger"
+                                        *ngIf="form.get('martial_status').invalid && form.get('martial_status').dirty">{{'share.required' |translate}}</span>
+                                    </div>
+                                    
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" id="name" placeholder="job"
+                                                formControlName="job" [ngClass]="{'has-error':form.get('job').invalid && form.get('job').dirty}">
+                                        </div>
+                             
+                              
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1" formControlName="gender" [ngClass]="{'has-error':form.get('gender').invalid && form.get('gender').dirty}">
+                                                <option value="Female">Female</option>
+                                                <option value="Male">Male</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="Age" formControlName="age"  readonly>
+                                    </div> -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m-b-12">
+                                        
+                                    <input type="text" formControlName="birthdate" bsDatepicker id="pickDate" [ngClass]="{'has-error':form.get('birthdate').invalid && form.get('birthdate').dirty}" class="input-field input-normal form-control" placeholder="Birthdate" >
+                                       
+                                      </div>
+                                    <div class="col-md-6">
+                                     
+                                      <ng-select placeholder="Country" [multiple]="false" formControlName="country_id">
+                                        <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
+                                          {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+                                      </ng-select>
+                                      <span class="text-danger"
+                                        *ngIf="form.get('country_id').invalid && form.get('country_id').dirty">{{'share.required' |translate}}</span>
+                                    </div>
+                          
+                                    <div class="col-md-6">
+                                  
+                                      <ng-select placeholder="City" [multiple]="false" formControlName="city_id">
+                                        <ng-option *ngFor="let row of cities" [value]="row.id" [disabled]="row.disabled">
+                                          {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
+                                      </ng-select>
+                                      <span class="text-danger"
+                                        *ngIf="form.get('city_id').invalid && form.get('city_id').dirty">{{'share.required' |translate}}</span>
+                                    </div>
+                                 
+                                <div class="col-md-12 mb-10 m-t-15">
+                                    <a (click)="changePassword()" class="psw"> change your password </a>
+                                </div>
+                            </div>
+                            <div class="modal-footer p-r-0">
+                                <button type="button" (click)="save()" class=" boxed-btn3" data-dismiss="modal">save</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+        </div>
+    </div>

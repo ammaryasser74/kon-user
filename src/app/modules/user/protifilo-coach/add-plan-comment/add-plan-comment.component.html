@@ -1,0 +1,78 @@
+<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-20">
+
+    <div class="col-sm-2">
+        <label tabindex="0" class="lbl-img res-img outline" for="my-file-3">
+                    <a>  
+                    <div class="avatar-img text-center mbmd outline">
+                            <input class="input-file outline" id="my-file-3" type="file" style="display :none"  (change)="onSelectFile($event)" class="select-profile-picture">
+                              {{'transaction.Upload-the-file'|translate}}
+                      </div>
+                    </a>
+            </label>
+    </div>
+
+    <div class="modal-footer p-r-0">
+                              
+        <button type="button" (click)="Save()" class=" boxed-btn3" data-dismiss="modal">save</button>
+     
+    </div>
+</div>
+
+
+  -->
+
+<div class="modal-content">
+
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-4 text-center my-auto">
+
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input class="input-file outline" id="my-file-3" type="file" style="display :none"
+                            (change)="onSelectFile($event)" class="select-profile-picture">
+                        <label for="my-file-3"></label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" style="">
+                        </div>
+                    </div>
+                </div>
+                <p class="mtl-15"> upload your file </p>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-7 my-auto">
+                <form>
+                    <div class="row">
+
+                        <!-- <div class="col-md-12">
+        <input type="text" class="form-control"  placeholder="Coaching Type" >
+      </div>
+           <div class="col-md-12">
+        <input type="Number" class="form-control"  placeholder="Sessions Number" >
+      </div> -->
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="button" (click)="Save()" class=" boxed-btn3" data-dismiss="modal">save</button>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,65 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <h4> Signup</h4>
+        <h3> Welcome Dear </h3>
+        <p> Let us change your life to better</p>
+        <form [formGroup]="form" autocomplete="off" (ngSubmit)="save()">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <input type="text" class="form-control" id="name" placeholder="First Name"
+                        formControlName="first_name"
+                        [ngClass]="{'has-error':form.get('first_name').invalid && form.get('first_name').dirty}">
+                </div>
+                <div class="col-md-6 col-12">
+                    <input type="text" class="form-control" id="email" placeholder="Last Name"
+                        formControlName="last_name"
+                        [ngClass]="{'has-error':form.get('last_name').invalid && form.get('last_name').dirty}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <input type="tel" class="form-control" id="name" placeholder="Phone" formControlName="phone"
+                        [ngClass]="{'has-error':form.get('phone').invalid && form.get('phone').dirty}">
+                </div>
+                <div class="col-md-6 col-12">
+                    <input type="text" class="form-control" id="email" placeholder="You@mail.com"
+                        formControlName="email"
+                        [ngClass]="{'has-error':form.get('email').invalid && form.get('email').dirty}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <select class="form-control" id="sel1" formControlName="gender"
+                            [ngClass]="{'has-error':form.get('gender').invalid && form.get('gender').dirty}">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <input type="password" class="form-control" placeholder="Create password" formControlName="password"
+                        [ngClass]="{'has-error':form.get('password').invalid && form.get('password').dirty}">
+                </div>
+            </div>
+            <p class="error" *ngIf="error">{{error}}</p>
+            <div class="modal-footer">
+                <button type="submit" class=" boxed-btn3" data-dismiss="modal" [disabled]="loading">
+                    <div class="spinner-border" role="status" *ngIf="loading">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span class="ml-2">Signup</span>
+
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

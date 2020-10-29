@@ -1,0 +1,44 @@
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <h4> Add Child</h4>
+           
+            <form [formGroup]="form" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <input type="text" class="form-control" id="name" placeholder="Name"
+                            formControlName="name" [ngClass]="{'has-error':form.get('name').invalid && form.get('name').dirty}" >
+                    </div>
+                   
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <!-- <input type="text" [maxDate]="today" formControlName="birthdate" bsDatepicker id="pickDate" [ngClass]="{'has-error':form.get('birthdate').invalid && form.get('birthdate').dirty}" class="input-field input-normal form-control" placeholder="Birthdate" >
+                         -->
+                        <input [max]="today" class="form-control" formControlName="birthdate"  type="text" nbInput fullWidth
+                        [owlDateTime]="dt3" placeholder="{{ 'date' | translate}}" [owlDateTimeTrigger]="dt3">
+                        <owl-date-time #dt3 [pickerType]="'calendar'"></owl-date-time>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <select class="form-control" id="sel1" formControlName="gender" [ngClass]="{'has-error':form.get('gender').invalid && form.get('gender').dirty}">
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="save()"  class="boxed-btn3" data-dismiss="modal">Save</button>
+        </div>
+    </div>
+

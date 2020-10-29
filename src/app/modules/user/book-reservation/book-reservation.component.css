@@ -1,0 +1,142 @@
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #4DBDEB !important;
+}
+.custom-container{
+  background: #f1f1f1f1 !important;
+  border-radius: 25px;
+  margin-top: 50px;
+
+}
+.viewDate-container{ 
+  border: 2px solid #FEF1ED;
+  color: #666;
+  width: 96.7%;
+  padding: 0.2rem 3rem;
+  margin: auto;
+  background: border-box;
+  font-size: 18px;
+  font-weight: bolder;
+  background-color: #FEF1ED;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  background-color: #4DBDEB !important;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+    top: 0px;
+   left: 0px;
+   width: 13px;
+   height: 13px;
+   border-radius: 50%;
+   background: white;
+   margin: auto;
+   bottom: 0px;
+   right: 0px;
+}
+
+/* Style the indicator (dot/circle) */
+.all-times .checkmark:after {
+     top: 0px;
+    left: 0px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: white;
+    margin: auto;
+    bottom: 0px;
+    right: 0px;
+}
+.calender-container{
+  /* display: flex;
+    margin: auto;
+    flex-direction: unset;
+    /* flex: 1 0 1;
+    transform: translate(-50%, -50%); */
+    /* text-align: left; */ 
+}
+.start{
+  font-size: 1.3rem;
+  color: #666;
+  font-weight: bolder;
+  background:transparent;
+}
+.for-u{
+  text-align: left;
+  margin-left: 3rem;
+}
+.mt-15
+{
+    margin-top: 3rem !important;
+}
+.saveBtn{
+  padding: 0.5rem 4rem !important;
+  border-radius: 10px;
+  margin: auto;
+}
+.myinput{
+  position: initial !important;
+  opacity: 10 !important;
+  cursor: pointer;
+}
+.container-coatch{
+  border: 2px solid #ECF6F8 ;
+  border-radius: 10px;
+  padding: 1rem 1.8rem;
+  background-color: #ECF6F8 !important;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: #4DBDEB;
+}
+.container-coatch img{
+  border-radius: 100%;
+  margin-right: 1rem;
+
+}
+.online-type{
+  margin-top: 1rem;
+    padding-bottom: 1rem;
+}

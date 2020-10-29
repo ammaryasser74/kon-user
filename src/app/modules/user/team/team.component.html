@@ -1,0 +1,87 @@
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1 team-header overlay">
+        <div class="container-fluid p-lr-70">
+            <div class="row align-items-center justify-content-start">
+                <div class="col-lg-12 col-md-12">
+                    <div class="slider_text text-center">
+                        <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".1s">
+                      Meet coachs
+                        </h3>
+                      
+                    </div>
+                </div>
+            </div>
+            <app-settings-comp></app-settings-comp>
+        </div>
+    </div>
+</div>
+<!-- slider_area_end -->
+
+<!-- service_area  -->
+<div class="service_area">
+    <div class="container">
+    
+        <ng-container *ngFor="let row of coaches">
+        <div class="row team-details" >
+        
+            <div class="col-xl-4 col-md-4 m-t-30">
+                <div class="row text-center wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+                   <div class="col-md-12">
+                    <div class="ion">
+                     <img [src]="myURL+''+row.avater" alt="" class="img-fluid">
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                    <h3> {{row.first_name}} {{row.last_name}}</h3>
+                    </div>
+                </div>
+            </div>
+           <div class="col-xl-8 col-md-8">
+                <div class="details-right wow fadeInLeft" data-wow-duration="1.2s" data-wow-delay=".4s">
+                   <div class="row">
+                    <div class="col-md-6">
+                         <h4>Coaching Expertise</h4>
+                         <ng-container *ngFor="let exp of row.coach?.experiences ; let i=index">
+                            <p *ngIf="exp.type=='expertises'&& i<2"> <span>  - </span> {{languageService.getLanguageOrDefault()=='ar' ? exp.name_arabic :exp.name_english}}</p>
+                        </ng-container>
+                              <h4 class="m-t-30">Certifications</h4>
+                   
+                              <ng-container *ngFor="let n of row.coach?.experiences ">
+                                <p *ngIf="n.type=='certification'"> <span>  - </span> {{languageService.getLanguageOrDefault()=='ar' ? n.name_arabic :n.name_english}}</p>
+                            </ng-container>
+                       </div>
+                      <div class="col-md-6">
+                         <h4>Experience</h4>
+                   <ng-container *ngFor="let asd of row.coach?.experiences"> 
+                        <p *ngIf="asd.type=='experiences'"> <span>  - </span> {{languageService.getLanguageOrDefault()=='ar' ? asd.name_arabic :asd.name_english}}</p>
+                    </ng-container> 
+                       </div>
+                    </div>
+                  
+                 
+                </div>
+            </div>
+            
+         
+        </div>
+        </ng-container>
+    </div>
+</div>
+<!--/ service_area  -->
+
+
+
+
+
+<div data-scroll-index="0" class="get_in_tauch_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <ng-container *ngFor="let row of partner">
+              <div class="col-xl-2 col-md-2 my-auto text-center mb-30">
+                  <img class="img-fluid" [src]="row.img">
+              </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

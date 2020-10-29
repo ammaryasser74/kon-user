@@ -1,0 +1,138 @@
+<div class="modal-content" id="#myModalId">
+    <div class="modal-header">
+        <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+         
+            <h4>Start Reservation</h4>
+            <div class="col-md-12">
+                <form [formGroup]="form" autocomplete="off">
+                    <div class="row">
+                        <div class="row" *ngIf="!isEdit">
+                        <div class="col-6">
+                            <label class="container">For you
+                                <input type="radio" [checked]="form.get('foryou').value==1"  value="1" formControlName="foryou">
+                                <span class="checkmark"></span>
+                              </label>
+                        </div>
+                        <div class="col-6">
+                          <label class="container">For Child
+                            <input type="radio" value="2" formControlName="foryou">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div class="col-md-8 my-auto" *ngIf="clientData?.client?.children.length>0 && form.get('foryou').value==2" >
+                            <ng-select placeholder="Choose Child" [multiple]="false" formControlName="child_id">
+                                <ng-option *ngFor="let row of clientData?.client.children" [value]="row.id" [disabled]="row.disabled">
+                                    {{ row.name}}
+                                </ng-option>
+                            </ng-select>
+                            </div>
+                            <div class="col-md-4 mt-15" *ngIf="form.get('foryou').value==2">
+                                <button (click)="addChild()" class="boxed-btn3" >Add Child</button>
+                            </div>
+
+
+                        <div class="col-md-12">
+                            <ng-select placeholder="Choose Service" [multiple]="false" formControlName="serviceID">
+                                <ng-option *ngFor="let row of service" [value]="row.id" [disabled]="row.disabled">
+                                    {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}
+                                </ng-option>
+                            </ng-select>
+                            <span class="text-danger"
+                                *ngIf="form.get('serviceID').invalid && form.get('serviceID').dirty">Required</span>
+                            </div>
+
+                        <div class=" container col-md-12">
+                            <ng-select placeholder="Choose Session" [multiple]="false" formControlName="entity_id">
+                                <ng-option *ngFor="let row of session" [value]="row.id" [disabled]="row.disabled">
+                                    {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}
+                                </ng-option>
+                            </ng-select>
+                            <span class="text-danger"
+                                *ngIf="form.get('entity_id').invalid && form.get('entity_id').dirty">Required</span>
+                        </div>
+
+                        <div class=" container col-md-12">
+                            <ng-select placeholder="Choose Coaches" [multiple]="false" formControlName="coach_id">
+                                <ng-option *ngFor="let row of coaches" [value]="row.id" [disabled]="row.disabled">
+                                    {{row.user.first_name}} {{row.user.last_name}}</ng-option>
+                            </ng-select>
+                            <span class="text-danger"
+                                *ngIf="form.get('coach_id').invalid && form.get('coach_id').dirty">Required</span>
+                        </div>
+
+                        <div class=" container col-md-12 mt-20" *ngIf="form.get('online_price').value">
+                            <div class="row">
+                            <div class="col-md-6">
+                                <label class="container">online Price({{form.get('online_price').value}})
+                                    <input type="radio" formControlName="total_price" 
+                                    [value]="1">
+                                    <span class="checkmark"></span>
+                                  </label>
+
+                                
+                            </div>
+
+                            <div class=" container col-md-6">
+                   
+                        <label class="container">face to face ({{form.get('offline_price').value}})
+                            <input type="radio" formControlName="total_price"
+                            [value]="2">
+                            <span class="checkmark"></span>
+                          </label>
+                           
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="input-icon" class="asdDODO">
+                                <!-- <input class="form-control" formControlName="date" id="datepicker"
+                                    [ngClass]="{'has-danger':form.get('date').invalid && form.get('date').dirty}"
+                                    [minDate]="today" placeholder="{{ 'date' | translate}}" type="text" bsDatepicker> -->
+
+                                    <input [min]="today" class="form-control" formControlName="date"  type="text" nbInput fullWidth
+                                    [owlDateTime]="dt3" placeholder="{{ 'date' | translate}}" [owlDateTimeTrigger]="dt3">
+                                    <owl-date-time #dt3 [pickerType]="'calendar'"></owl-date-time>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12 m-t-10" *ngIf="NoTime">
+                        <span class="text-danger">No time avalaible please Select another Date</span>
+                        </div>
+
+                        <!-- <div class="col-md-12 col-xs-12 m-t-10">
+                            <p class="text-danger">No time avalaible please Select another Date</p>
+                            </div> -->
+                        <div class=" col-md-12 col-xs-12 m-t-10">
+                            <div class="row m-t-10">
+                            <ng-container *ngFor="let row of avaliableTime">
+                                <div class=" container col-md-6">
+                                <label class="d-block">  {{row.time_from}} to {{row.time_to}} KSA
+                                    <input type="radio" [value]="row.id" formControlName="timeID">
+                                    <span class="checkmark"></span>
+                                  </label>
+                                </div>
+                            </ng-container>
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer p-r-0" *ngIf="!isEdit">
+                        <!-- <button   type="button" (click)="save()" class=" boxed-btn3"> -->
+                            <button type="button" class="boxed-btn3"  (click)="save()" >
+                            save</button>
+                    </div>
+                    <div class="modal-footer p-r-0" *ngIf="isEdit">
+                        <!-- <button   type="button" (click)="save()" class=" boxed-btn3"> -->
+                            <button type="button" class="boxed-btn3"  (click)="update()" >
+                            update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <h4> Login</h4>
+            <h3>Happy To See You Again </h3>
+            <p> Let us change your life to better</p>
+            <form [formGroup]="form" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <input type="text" class="form-control" id="name" placeholder="Email"
+                            formControlName="LoginField" [ngClass]="{'has-error':form.get('LoginField').invalid && form.get('LoginField').dirty}" >
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <input type="password" class="form-control" id="email" placeholder="Password"
+                            formControlName="Password" [ngClass]="{'has-error':form.get('Password').invalid && form.get('Password').dirty}">
+                    </div>
+                    <div class="col-md-12 mt-20">
+                        <a (click)="newUser()" class="psw"> I donot have account ? </a>
+                </div>
+                <div class="col-md-12 ">
+                    <a (click)="forgetPassword()" class="psw"> Forget your Password ? </a>
+            </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="login()" class=" boxed-btn3" data-dismiss="modal">Sign In</button>
+        </div>
+    </div>

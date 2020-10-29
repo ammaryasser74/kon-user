@@ -1,0 +1,16 @@
+.bookingBtn{
+ width: auto;
+ text-align: center;
+ margin-left: 10%;
+ background-color: #0AB1DA;
+ color: #fff;
+ margin-right: 10%;
+ margin-top: 0.5rem;
+ border: 2px solid #0AB1DA;
+ outline: none;
+}
+.bookingBtn:hover{
+ background-color: #fff;
+ color: #0AB1DA;
+ border: 2px solid #0AB1DA;
+}
