@@ -24,54 +24,56 @@
 <div class="modal-content">
 
     <div class="modal-header">
-
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="close" (click)="myModel.hide()" data-dismiss="modal">&times;</button>
     </div>
 
     <div class="modal-body">
+        <ng-container *ngIf="!FileUploaded">
+            <div class="spinner-container d-flex align-items-center justify-content-center">
+                <div class="spinner-border overlay" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+            </div>
+           
 
-        <div class="row">
-            <div class="col-md-4 text-center my-auto">
+        </ng-container>
 
-                <div class="avatar-upload">
-                    <div class="avatar-edit">
-                        <input class="input-file outline" id="my-file-3" type="file" style="display :none"
-                            (change)="onSelectFile($event)" class="select-profile-picture">
-                        <label for="my-file-3"></label>
-                    </div>
-                    <div class="avatar-preview">
-                        <div id="imagePreview" style="">
+        <ng-container *ngIf="FileUploaded">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-md-4 text-center my-auto">
+
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input class="input-file outline" id="my-file-3" type="file" style="display :none"
+                                (change)="onSelectFile($event)" class="select-profile-picture">
+                            <label for="my-file-3"></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="fileImage" style="">
+                            </div>
                         </div>
                     </div>
+                    <p class="mtl-15"> upload your file </p>
                 </div>
-                <p class="mtl-15"> upload your file </p>
-            </div>
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-7 my-auto">
-                <form>
-                    <div class="row">
-
-                        <!-- <div class="col-md-12">
-        <input type="text" class="form-control"  placeholder="Coaching Type" >
-      </div>
-           <div class="col-md-12">
-        <input type="Number" class="form-control"  placeholder="Sessions Number" >
-      </div> -->
-
-                    </div>
-
-                </form>
+                <div class="col-md-1">
+                </div>
 
             </div>
+        </ng-container>
 
-        </div>
     </div>
 
 
-    <div class="modal-footer">
-        <button type="button" (click)="Save()" class=" boxed-btn3" data-dismiss="modal">save</button>
-    </div>
+
+
+    <div class="modal-footer" *ngIf="FileUploaded">
+        <button type="button" (click)="Save()" class=" boxed-btn3" data-dismiss="modal" [disabled]="loading">
+            <div class="spinner-border" role="status" *ngIf="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span class="ml-2">Signup</span>
+        </button> </div>
 
 
 
