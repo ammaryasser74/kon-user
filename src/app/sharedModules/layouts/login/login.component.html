@@ -30,6 +30,12 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" (click)="login()" class=" boxed-btn3" data-dismiss="modal">Sign In</button>
+
+            <button type="button" (click)="login()" class=" boxed-btn3" data-dismiss="modal" [disabled]="loading">
+                <div class="spinner-border" role="status" *ngIf="loading">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span class="ml-2">Signup</span>
+            </button>
         </div>
     </div>
