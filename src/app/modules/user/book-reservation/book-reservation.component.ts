@@ -74,7 +74,6 @@ export class BookReservationComponent implements OnInit {
     activeDayIsOpen: boolean = false;
     showLoader: boolean = false;
     reservation: any;
-
     constructor(private serviceService: ServiceService,
                 private formBuilder: FormBuilder,
                 private activeRoute: ActivatedRoute,
