@@ -21,10 +21,9 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="col-md-9 my-auto"
-                                *ngIf="clientData?.client?.children.length>0 && form.get('foryou').value==2">
+                            <div class="col-md-9 my-auto" *ngIf="form.get('foryou').value==2">
                                 <ng-select placeholder="Choose Child" [multiple]="false" formControlName="child_id">
-                                    <ng-option *ngFor="let row of clientData?.client.children" [value]="row.id"
+                                    <ng-option *ngFor="let row of clientData?.client?.children" [value]="row.id"
                                         [disabled]="row.disabled">
                                         {{ row.name}}
                                     </ng-option>
@@ -63,8 +62,7 @@
                                     <div class="col-md-6 row mt-15" *ngFor="let row of coaches">
 
                                         <label class="container py-2">
-                                            <input type="radio"  formControlName="coach_id"
-                                                [value]="row.id">
+                                            <input type="radio" formControlName="coach_id" [value]="row.id">
 
                                             <img [src]="row.avater" width="50px" height="50px"
                                                 style="border-radius: 50%;">
@@ -82,7 +80,8 @@
                             <div class="col-md-12 mt-20" *ngIf="form.get('total_price').value">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" class="myinput form-control" formControlName="total_price" readonly>
+                                        <input type="text" class="myinput form-control" formControlName="total_price"
+                                            readonly>
                                     </div>
 
                                 </div>
@@ -90,7 +89,7 @@
                             <div class="col-md-12 mt-20" *ngIf="form.get('total_price').value">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="container py-2">online 
+                                        <label class="container py-2">online
                                             <input type="radio" formControlName="type" value="online">
                                             <span class="checkmark"></span>
                                         </label>
@@ -100,7 +99,7 @@
 
                                     <div class="col-md-6 col-sm-12">
 
-                                        <label class="container py-2">face to face 
+                                        <label class="container py-2">face to face
                                             <input type="radio" formControlName="type" value="offline">
                                             <span class="checkmark"></span>
                                         </label>
@@ -166,23 +165,23 @@
                         </ng-container>
 
                         <ng-container *ngIf="!loadmycalender">
-                                <div class="col-md-12 p-0">
-                                    <div class="row m-t-10">
-                                        <ng-container *ngFor="let row of avaliableTime; let i=index">
-                                            <div class="col-md-6 ">
-                                                <div class="all-times"  style="border: 2px solid #4DBDEB;">
-                                                    <label class="container py-2 m-0 " style="border:1px">
-                                                        <span class="d-block">{{row.time_from}} </span>
-                                                        to
-                                                        <span class="d-block"> {{row.time_to}} KSA </span>
-                                                        <input type="radio" [value]="i" formControlName="timeID">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
+                            <div class="col-md-12 p-0">
+                                <div class="row m-t-10">
+                                    <ng-container *ngFor="let row of avaliableTime; let i=index">
+                                        <div class="col-md-6 ">
+                                            <div class="all-times" style="border: 2px solid #4DBDEB;">
+                                                <label class="container py-2 m-0 " style="border:1px">
+                                                    <span class="d-block">{{row.time_from}} </span>
+                                                    to
+                                                    <span class="d-block"> {{row.time_to}} KSA </span>
+                                                    <input type="radio" [value]="i" formControlName="timeID">
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
-                                        </ng-container>
-                                    </div>
+                                        </div>
+                                    </ng-container>
                                 </div>
+                            </div>
                         </ng-container>
                     </div>
 
