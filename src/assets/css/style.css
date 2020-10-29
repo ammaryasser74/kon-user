@@ -9336,6 +9336,9 @@ option:disabled {
 #imagePreview {
     background-image: url(../img/profile.png);
 }
+#fileImage {
+    background-image: url(../img/file.png);
+}
 
 .mtl-15 {
     margin-top: 10px;
