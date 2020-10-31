@@ -62,11 +62,11 @@ export class CompleteProfileComponent implements OnInit {
         this.cities = res.Data
         this.form.patchValue(this.myDatat)
         this.dataLoaded = true;
-        this.form.get('country_id').valueChanges.subscribe(countryID => {
-          this.form.get('city_id').reset()
-          this.cities = []
-          this.cityService.GetList(this.myDatat.country_id).subscribe(res => { this.cities = res.Data })
-        })
+        // this.form.get('country_id').valueChanges.subscribe(countryID => {
+        //   this.form.get('city_id').reset()
+        //   this.cities = []
+        //   this.cityService.GetList(this.myDatat.country_id).subscribe(res => { this.cities = res.Data })
+        // })
 
       })
     })
@@ -97,6 +97,11 @@ export class CompleteProfileComponent implements OnInit {
       city_id: [null, Validators.required],
     })
 
+  }
+  onChangeCountry(e) {
+    this.form.get('city_id').reset()
+    this.cities = []
+    this.cityService.GetList(this.myDatat.country_id).subscribe(res => { this.cities = res.Data })
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
