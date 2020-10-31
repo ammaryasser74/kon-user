@@ -96,6 +96,10 @@ export class BookReservationComponent implements OnInit {
     }
 
     ngOnInit() {
+        setTimeout(() => {
+            window.scroll(0, 0);
+        }, 100);
+
         this.myURL = environment.api_imges
         this.reserveID = this.router.url.split('/')[3]; //+this.activeRoute.snapshot.paramMap.get('id')
         this.id = this.router.url.split('/')[4];
@@ -243,7 +247,7 @@ export class BookReservationComponent implements OnInit {
     getTime() {
         this.loadmycalender = true;
         if (this.form.value.coach_id) this.coach_id = this.form.value.coach_id
-        this.reservationService.GetListTime(moment(this.viewDate).format('YYYY-MM-DD'),  this.coach_id)
+        this.reservationService.GetListTime(moment(this.viewDate).format('YYYY-MM-DD'), this.coach_id)
             .subscribe(response => {
                 console.log("LLL", response);
 
@@ -257,62 +261,62 @@ export class BookReservationComponent implements OnInit {
                 this.spinner.hide();
                 console.log(this.showLoader, 'errrr');
             });
-    
 
-}
 
-update() {
-    this.form.get('id').setValue(this.id)
-    if (this.form.value.timeID === null) {
-        this.toast();
-        return;
     }
-    this.spinner.show();
-    this.reservationService.UpdateTime(this.form.value).subscribe(res => {
-        this.toastr.success(res.Message);
-        this.spinner.hide();
-        this.router.navigate(['/user/home']);
-    }, err => {
-        this.spinner.hide();
-    });
-}
 
-toast() {
-    this.toastr.error('required');
-}
-
-save() {
-    if (this.form.value.timeID === null) {
-        this.toast();
-        return;
+    update() {
+        this.form.get('id').setValue(this.id)
+        if (this.form.value.timeID === null) {
+            this.toast();
+            return;
+        }
+        this.spinner.show();
+        this.reservationService.UpdateTime(this.form.value).subscribe(res => {
+            this.toastr.success(res.Message);
+            this.spinner.hide();
+            this.router.navigate(['/user/home']);
+        }, err => {
+            this.spinner.hide();
+        });
     }
-    this.spinner.show();
-    // if (this.form.value.online_price == this.form.value.total_price) {
-    //     this.form.get('type').setValue('online');
-    // } else {
-    //     this.form.get('type').setValue('offline');
-    // }
-    let time = this.avaliableTime[this.form.value.timeID];
-    this.form.get('time_from').setValue(time.time_from);
-    this.form.get('time_to').setValue(time.time_to);
-    if (this.form.valid) {
-        this.reservationService.post(this.form.value).subscribe(
-            res => {
-                if (res.Success) {
-                    this.toastr.success(res.Message);
+
+    toast() {
+        this.toastr.error('required');
+    }
+
+    save() {
+        if (this.form.value.timeID === null) {
+            this.toast();
+            return;
+        }
+        this.spinner.show();
+        // if (this.form.value.online_price == this.form.value.total_price) {
+        //     this.form.get('type').setValue('online');
+        // } else {
+        //     this.form.get('type').setValue('offline');
+        // }
+        let time = this.avaliableTime[this.form.value.timeID];
+        this.form.get('time_from').setValue(time.time_from);
+        this.form.get('time_to').setValue(time.time_to);
+        if (this.form.valid) {
+            this.reservationService.post(this.form.value).subscribe(
+                res => {
+                    if (res.Success) {
+                        this.toastr.success(res.Message);
+                        this.spinner.hide();
+                        this.router.navigate(['/user/home']);
+                    } else {
+                        this.spinner.hide();
+                        this.toastr.error(res.Message);
+                    }
+                }, err => {
                     this.spinner.hide();
-                    this.router.navigate(['/user/home']);
-                } else {
-                    this.spinner.hide();
-                    this.toastr.error(res.Message);
-                }
-            }, err => {
-                this.spinner.hide();
-            });
-    } else {
-        for (const control in this.form.controls) {
-            this.form.get(control).markAsDirty();
+                });
+        } else {
+            for (const control in this.form.controls) {
+                this.form.get(control).markAsDirty();
+            }
         }
     }
-}
 }
