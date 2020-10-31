@@ -50,8 +50,7 @@
                         <li  class="nav-item dropdown " *ngIf="getFromLocalStorage('currentUser')!=null">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/profile.png" class="profile-img" *ngIf="!getFromLocalStorage('currentUser').avater"> 
-                          
-                            <img class="profile-img" [src]="myUrl+''+getFromLocalStorage('currentUser').avater" alt="">
+                            <img *ngIf="getFromLocalStorage('currentUser').avater" class="profile-img" [src]="myUrl+''+getFromLocalStorage('currentUser').avater" alt="">
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" routerLink="/user/portfolio" *ngIf="getFromLocalStorage('currentUser').type=='client'">Account</a>
