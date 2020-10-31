@@ -88,7 +88,7 @@
                                       </div>
                                     <div class="col-md-6">
                                      
-                                      <ng-select placeholder="Country" [multiple]="false" formControlName="country_id">
+                                      <ng-select placeholder="Country" (change)="onChangeCountry($event)" [multiple]="false" formControlName="country_id">
                                         <ng-option *ngFor="let row of country" [value]="row.id" [disabled]="row.disabled">
                                           {{languageService.getLanguageOrDefault()=='ar' ? row.name_arabic :row.name_english}}</ng-option>
                                       </ng-select>
