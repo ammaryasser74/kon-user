@@ -101,7 +101,7 @@ export class CompleteProfileComponent implements OnInit {
   onChangeCountry(e) {
     this.form.get('city_id').reset()
     this.cities = []
-    this.cityService.GetList(this.myDatat.country_id).subscribe(res => { this.cities = res.Data })
+    this.cityService.GetList(e).subscribe(res => { this.cities = res.Data })
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
