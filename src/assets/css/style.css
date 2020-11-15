@@ -10174,3 +10174,7 @@ button.nav-link {
 /* .slick-track{
     width: 100% !important;
 } */
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
+    padding: 10px;
+}
