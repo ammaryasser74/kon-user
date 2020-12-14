@@ -1,0 +1,37 @@
+<div class="courses-container">
+    <div *ngIf="allCourses !== undefiend" >
+        <div class="container">
+            <div class="courses-header">
+                <h2> Courses </h2>
+                <div class="header-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus
+                        pharetra dapibus.
+                        Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue.
+                        Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis.
+                    </p>
+                </div>
+            </div>
+            <div class="card-section">
+                <div *ngFor="let course of allCourses | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalRecords }">
+                    <div class="card" style="width: 17rem;">
+                        <img class="card-img-top" src="../../../../assets/img/event1.png" alt="Card image cap">
+                        <img class="coach-image" src="https://kon-backend.start-it.online//{{course.img}}"
+                            alt="coach image">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">coach {{course.coach_name}}</h6>
+                            <p class="card-text">{{course.description_english}}</p>
+                            <div class="price">
+                                <h3 class="card-subtitle mb-2">{{course.price}}</h3><span>sar</span>
+                            </div>
+                            <button class="btn btn-primary mb-2">Enroll</button>
+                            <a [routerLink]="['/user/course/'+course.id]" class="card-link mb-2">Course Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+    
+</div>

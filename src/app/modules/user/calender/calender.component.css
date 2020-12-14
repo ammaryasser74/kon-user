@@ -1,0 +1,36 @@
+.m-4 {
+    margin: 1.5rem 0!important;
+}
+.sessions{
+    width: 40%;
+    padding: 2%;
+    margin: 3% 0 3% 4%;
+    background-color: #fff;
+}
+.data-accordion{
+    background-color: #fff !important;
+}
+
+.normal-price{
+    font-size: 10px;
+    color: rgb(141, 140, 140);
+    text-decoration: line-through;
+}
+
+input[type = "radio"]{
+    opacity: 0;
+}
+
+.avaliable-time{
+    border: 1px solid #4dbdeb;
+    padding: 5px;
+    margin: 12px 16px;
+}
+
+.reservation-button{
+    background-color: #4dbdeb;
+    color: white;
+    margin: 10px 4px;
+    width: 100%;
+    border-radius: 0;
+}

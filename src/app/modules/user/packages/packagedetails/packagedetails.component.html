@@ -1,0 +1,25 @@
+<div class="details-container">
+  <div *ngIf="packageDetail !== undefined">
+    <div class="header-details">
+      <div class="container">
+        <h1> {{packageDetail?.name_english}} </h1>
+        <div>
+          <span><i class="fas fa-user-alt"></i> {{packageDetail?.coach_name}} </span>
+          <span><i class="far fa-calendar-alt"></i> {{packageDetail?.no_of_session}} Sections</span>
+        </div>
+        <img src="https://kon-backend.start-it.online//{{packageDetail.img}}" alt="Card image cap"
+          class="img-fluid header-img">
+      </div>
+    </div>
+    <div class="container details-content d-flex flex-row">
+      <div class="package-details">
+        <tabset>
+          <tab heading="Details" class="tab-content">Basic content</tab>
+          <tab heading="Package Descripations" class="tab-content">{{packageDetail?.description_english}}</tab>
+        </tabset>
+      </div>
+      <div class="sessions">
+        <app-calender [packageDetails]="packageDetail"></app-calender>
+    </div>
+  </div>
+</div>

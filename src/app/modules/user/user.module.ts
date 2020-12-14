@@ -69,9 +69,18 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {BookReservationComponent} from './book-reservation/book-reservation.component';
 import {BookTicketComponent} from './home/book-ticket/book-ticket.component';
-import {GeneralModule} from "../general/general.module";
 import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
-
+import { PackagesComponent } from './packages/packages.component';
+import { PackagesService } from 'src/app/services/user/packages.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CoursesComponent } from './courses/courses.component';
+import { PackagedetailsComponent } from './packages/packagedetails/packagedetails.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { SharedDataService } from 'src/app/services/user/shared-data.service';
+import { CoursesService } from 'src/app/services/user/courses.service';
+import { CoursedetailsComponent } from './courses/coursedetails/coursedetails.component';
+import { CalenderComponent } from './calender/calender.component';
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/user/', '.json');
 }
@@ -88,6 +97,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         Ng5SliderModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
+        TabsModule.forRoot(),
+        AccordionModule.forRoot(),
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
@@ -95,13 +106,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         RouterModule.forChild(UserRouting),
         TranslateModule.forRoot({
             loader: {
-
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient],
             },
         }),
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        NgxPaginationModule 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     entryComponents: [
@@ -116,7 +127,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     ],
     declarations: [
-
         HomeComponent,
         ForgetPasswordComponent,
         ContactusComponent,
@@ -139,6 +149,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         ServicesComponent,
         AddChildComponent,
         BookTicketComponent,
+        PackagesComponent,
+        CoursesComponent,
+        PackagedetailsComponent,
+        CoursedetailsComponent,
+        CalenderComponent,
     ],
 
     providers: [
@@ -162,10 +177,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         CountryService,
         ChildService,
         CartService,
+        PackagesService,
+        CoursesService,
+        SharedDataService,
         NgxSpinnerService,
         {
             provide: AuthServiceConfig,
-            // useFactory: provideConfig,
         },
     ],
 })

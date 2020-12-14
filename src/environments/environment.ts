@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   defaultDateFormat: 'DD-MM-YYYY',
   defaultPageSize: 20,
- // api_url: 'https://backend-kon.kon.onlineapi',
   api_imges: 'https://kon-backend.start-it.online/',
   api_url: 'https://kon-backend.start-it.online/api',
   defaultLanguage: 'en',

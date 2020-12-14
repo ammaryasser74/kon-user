@@ -253,6 +253,11 @@ font-weight: 600;
 
 /* } */
 
+i{
+    color: #4DBDEB;
+    padding: 4px;
+}
+
 .part {
     border: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.1);
@@ -418,7 +423,12 @@ font-weight: 600;
     position: absolute;
     right: 0;
 }
-
+.panel-heading.card-header{
+    font-size: 15px;
+    color: #3da8c0 ;
+    background-color: #fff !important;
+    border-bottom: 1px solid rgb(218, 217, 217) !important;
+}
 .section-time {
     position: absolute;
     top: 18px;

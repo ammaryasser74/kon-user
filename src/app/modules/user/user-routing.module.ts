@@ -19,6 +19,10 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProtifiloCoachComponent } from './protifilo-coach/protifilo-coach.component';
 import { ServicesComponent } from './services/services.component';
 import { BookReservationComponent } from './book-reservation/book-reservation.component';
+import { PackagesComponent } from './packages/packages.component';
+import { CoursesComponent } from './courses/courses.component';
+import { PackagedetailsComponent } from './packages/packagedetails/packagedetails.component';
+import { CoursedetailsComponent } from './courses/coursedetails/coursedetails.component';
 
 export const UserRouting: Route[] = [
 
@@ -40,6 +44,10 @@ export const UserRouting: Route[] = [
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'portfolio-coach', component: ProtifiloCoachComponent },
       { path: 'services', component: ServicesComponent },
+      { path: 'courses', component: CoursesComponent },
+      { path: 'course/:id', component: CoursedetailsComponent },
+      { path: 'packages', component: PackagesComponent },
+      { path: 'package/:id', component: PackagedetailsComponent },
     ],
   },
 ];

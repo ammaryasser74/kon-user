@@ -1,0 +1,64 @@
+<div class="details-container">
+    <div *ngIf="courseDetail !== undefined">
+        <div class="header-details">
+            <div class="container d-flex flex-row">
+                <img src="https://kon-backend.start-it.online//{{courseDetail.img}}" alt="Card image"
+                    class="rounded header-img">
+                <div class="right-side">
+                    <div class="first-coctent d-flex flex-row">
+                        <img class="coach-image"
+                            src="https://kon-backend.start-it.online//{{courseDetail.coach.user.avater}}"
+                            alt="coach image">
+                        <div class="d-flex flex-column m-auto">
+                            <h5>host name</h5>
+                            <div class="text-muted">host name</div>
+                        </div>
+                    </div>
+                    <h5 class="m-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Morbi fermentum metus faucibus
+                    </h5>
+                    <div class="m-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Morbi fermentum metus faucibus
+                    </div>
+                    <button class="btn btn-info">enroll for {{courseDetail.price}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="container details-content d-flex flex-row">
+            <div class="course-details">
+                {{courseDetail.description_english}}
+            </div>
+            <div class="course-related">
+                <h5> Related Courses </h5>
+                <div class="related-container">
+                    <div class="card mb-3" *ngFor="let course of allRelatedCourses">
+                        <img class="card-img-top" src="https://kon-backend.start-it.online//{{course.img}}"
+                            alt="Card image cap">
+                            <div class="course-bage">
+                                <div class="d-flex flex-row">
+                                    <img class="related-image"
+                                        src="https://kon-backend.start-it.online//{{course.coach.user.avater}}"
+                                        alt="coach image">
+                                    <div class="d-flex flex-column m-auto">
+                                        <div class="text-muted">Hosted by</div>
+                                        <h6>{{course.coach_name}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="card-body body">
+                            <p class="card-text">{{course.description_english}}</p>
+                            <hr>
+                            <div class="footer-card d-flex flex-row justify-content-between">
+                                <h4>{{course.price}} Sar</h4>
+                                <a [routerLink]="['/user/course/'+course.id]" class="btn btn-outline-info">Course Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

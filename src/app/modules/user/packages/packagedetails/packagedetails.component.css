@@ -1,0 +1,38 @@
+.header-details{
+    padding: 5% 0;
+    background-color: #fff;
+}
+
+.header-img{
+    width: 100%;
+    height: 450px;
+    padding-top: 15px;
+}
+
+.package-details{
+    width: 60%;
+    height: 300px;
+    background-color: #fff;
+    margin: 3% 0;
+}
+.normal-price{
+    font-size: 10px;
+    color: rgb(141, 140, 140);
+    text-decoration: line-through;
+}
+.m-4 {
+    margin: 1.5rem 0!important;
+}
+.sessions{
+    width: 40%;
+    padding: 2%;
+    margin: 3% 0 3% 4%;
+    background-color: #fff;
+}
+.data-accordion{
+    background-color: #fff !important;
+}
+.tab-content{
+    padding: 3%;
+}
+

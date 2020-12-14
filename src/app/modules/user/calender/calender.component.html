@@ -1,0 +1,77 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div formArrayName="times">
+        <div class="sessions-header m-2 d-flex flex-row justify-content-between">
+            <div class="right">
+                <span class="badge badge-primary m-1">{{packageDetails.no_of_session}}</span><span
+                    class="strong m-1">Sessions</span>
+            </div>
+            <div class="left">
+                <span class="normal-price m-1">{{packageDetails.normal_price}}</span><span
+                    class="m-1">{{packageDetails.package_price}}</span>
+            </div>
+        </div>
+        <div class="card m-4" *ngFor="let n of repeteSession(packageDetails.no_of_session)">
+            <div class="card-body">
+                <h5 class="card-title">{{packageDetails.session.name_english}}</h5>
+                <p class="card-text">{{packageDetails.session.description_english}}</p>
+            </div>
+            <accordion>
+                <accordion-group>
+                    <div class="clearfix" accordion-heading>
+                        <span class="pull-left float-left">
+                            <i class="far fa-calendar-alt"></i>
+                            Pick Session Date
+                        </span>
+                        <span class="float-right pull-right" style="color: gray;">
+                            Optioal
+                        </span>
+                    </div>
+                    <!-- start of calender -->
+                    <div class="calender">
+                        <div class="row text-center">
+                            <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12  mt-15 view-class">
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-xs-9 text-center"
+                                        style="width: auto; float: left; margin: auto;">
+                                        <span>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-xs-1 " mwlCalendarNextView [view]="view"
+                                        [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"
+                                        style="width: auto; float: left; margin: auto;">
+                                        <i class="fa fa-angle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div [ngSwitch]="view">
+                            <mwl-calendar-month-view [viewDate]="viewDate" [refresh]="refresh" [events]="events"
+                                (dayClicked)="dayClicked($event.day)">
+                            </mwl-calendar-month-view>
+                        </div>
+                            <div  *ngIf="eventClicked">
+                                <div *ngFor="let time of times.controls; let k= index">
+                                    <div class="row" [formGroupName]="k">
+                                        <div class="col-md-4 avaliable-time" *ngFor="let avaliableTime of avaliableTimes ; let j= index">
+                                            <div>
+                                                <label>
+                                                    <span>{{avaliableTime.time_from}}</span><span class="text-muted"> to </span>
+                                                    <input type="radio" [value]="j" formControlName="time_id"> 
+                                                    <span>{{avaliableTime.time_to}} KSA </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn reservation-button" (click)="addTimes()"> Save </button>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- end of calender -->
+                </accordion-group>
+            </accordion>
+        </div>
+    </div>
+    <button class="btn reservation-button" type="submit"> Complete Reservation </button>
+    </form>
+</div>

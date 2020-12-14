@@ -8,7 +8,6 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarView, } from 'angular-calendar';
 import { ServiceService } from 'src/app/services/user/services.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -24,20 +23,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 
-const colors: any = {
-    red: {
-        primary: '#4DBDEB',
-        secondary: '#4DBDEB',
-    },
-    blue: {
-        primary: '#4DBDEB',
-        secondary: '#4DBDEB',
-    },
-    yellow: {
-        primary: '#4DBDEB',
-        secondary: '#4DBDEB',
-    },
-};
 
 @Component({
     selector: 'mwl-demo-component',
@@ -90,7 +75,6 @@ export class BookReservationComponent implements OnInit {
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         this.viewTimes = true
-        console.log(this.events, moment(date).format('YYYY-MM-DD'), "DDD");
         this.avaliableTime = this.myData.filter(i => moment(i.start).format('YYYY-MM-DD') == moment(date).format('YYYY-MM-DD'));
         this.form.get('date').setValue(moment(date).format('YYYY-MM-DD'))
     }
@@ -171,12 +155,6 @@ export class BookReservationComponent implements OnInit {
         };
     }
 
-    // onChangeCoatch() {
-    //     this.form.patchValue({
-    //         total_price: 1
-    //     });
-    // }
-
     initForm() {
         this.form = this.formBuilder.group({
             id: [0],
@@ -213,35 +191,15 @@ export class BookReservationComponent implements OnInit {
                 this.coaches.map(i => i.avater = this.myURL + i.user.avater);
             }
         });
-
-        // this.form.get('date').valueChanges.subscribe(date => {
-        //   if (this.form.value.coach_id) {
-
-        // this.reservationService.Time({ date: moment(this.form.value.date).format('YYYY-MM-DD'), coach_id: this.form.value.coach_id }).
-        //   subscribe(res => {
-        //     if (res.Data) {
-        //       this.NoTime = false
-        //       this.avaliableTime = res.Data;
-        //     }
-        //     else {
-        //       this.avaliableTime = []
-        //       this.NoTime = true
-        //     }
-        //   })
-        // }
-        // })
-
         this.form.get('coach_id').valueChanges.subscribe(coach => {
             if (coach) {
                 this.spinner.show();
                 if (this.id == 0) {
                     this.form.get('total_price').setValue(this.coaches.find(i => i.id == coach).pivot.price)
-                    // this.form.get('offline_price').setValue(this.coaches.find(i => i.id == coach).pivot.offline_price)
                 }
                 this.getTime();
             }
         });
-
     }
 
     getTime() {
@@ -249,8 +207,6 @@ export class BookReservationComponent implements OnInit {
         if (this.form.value.coach_id) this.coach_id = this.form.value.coach_id
         this.reservationService.GetListTime(moment(this.viewDate).format('YYYY-MM-DD'), this.coach_id)
             .subscribe(response => {
-                console.log("LLL", response);
-
                 this.loadmycalender = false;
                 response.Data.map(i => i.start = new Date(i.date));
                 response.Data.map(i => i.end = new Date(i.date));
@@ -261,8 +217,6 @@ export class BookReservationComponent implements OnInit {
                 this.spinner.hide();
                 console.log(this.showLoader, 'errrr');
             });
-
-
     }
 
     update() {
@@ -291,17 +245,13 @@ export class BookReservationComponent implements OnInit {
             return;
         }
         this.spinner.show();
-        // if (this.form.value.online_price == this.form.value.total_price) {
-        //     this.form.get('type').setValue('online');
-        // } else {
-        //     this.form.get('type').setValue('offline');
-        // }
         let time = this.avaliableTime[this.form.value.timeID];
         this.form.get('time_from').setValue(time.time_from);
         this.form.get('time_to').setValue(time.time_to);
         if (this.form.valid) {
             this.reservationService.post(this.form.value).subscribe(
                 res => {
+                    console.log(this.form.value);
                     if (res.Success) {
                         this.toastr.success(res.Message);
                         this.spinner.hide();
